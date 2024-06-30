@@ -6,6 +6,7 @@ export const CheckboxLabel = styled.label`
   display: flex;
   align-items: center;
   margin: 1rem;
+  color: #6e717b;
 `;
 
 export const CheckboxInput = styled.input`

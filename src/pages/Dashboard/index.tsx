@@ -4,7 +4,15 @@ import AutoCompleteInput from "../../components/AutoCompleteInput";
 import DatePicker from "../../components/DatePicker";
 import MultiSelectInput from "../../components/MultiSelectInput";
 import CheckboxGroup from "../../components/CheckBox"; // Importando o tipo ICheckboxGroupProps
-import { Button, Input, InputContainer, Label } from "./style";
+import {
+  AutoCompleteInputContainer,
+  Button,
+  Form,
+  Input,
+  InputContainer,
+  Label,
+  P,
+} from "./style";
 
 export function Dashboard() {
   const [inputValue, setInputValue] = useState("");
@@ -14,7 +22,14 @@ export function Dashboard() {
   const [checkboxOptions, setCheckboxOptions] = useState<string[]>([]);
 
   // Lista de opções para o autocomplete
-  const options = ["Maçã", "Banana", "Abacaxi", "Pera", "Uva", "Melancia"];
+  const options = [
+    "Brasil",
+    "Estados Unidos",
+    "Bolívia",
+    "Argentina",
+    "México",
+    "Canadá",
+  ];
 
   const handleFormSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -34,42 +49,45 @@ export function Dashboard() {
 
   return (
     <BaseLayout>
-      <form onSubmit={handleFormSubmit}>
-        <div>
+      <Form onSubmit={handleFormSubmit}>
+        <AutoCompleteInputContainer>
           <AutoCompleteInput
-            label="Escolha uma fruta:"
-            listId="fruits-list"
+            label="Localidade(país)"
+            listId="list"
             options={options}
             value={inputValue}
             onChange={setInputValue}
           />
-          <p>Valor selecionado: {inputValue}</p>
-        </div>
-        <div>
-          <DatePicker
-            label="Selecione uma data:"
-            value={selectedDate}
-            onChange={setSelectedDate}
-          />
-          <p>Data selecionada: {selectedDate}</p>
-        </div>
-        <div>
-          <MultiSelectInput
-            label="Escolha frutas:"
+          <P>ou</P>
+          <AutoCompleteInput
+            label="ICAO"
+            listId="list"
             options={options}
-            selectedOptions={selectedOptions}
-            onChange={setSelectedOptions}
+            value={inputValue}
+            onChange={setInputValue}
           />
-          <p>Frutas selecionadas: {selectedOptions.join(", ")}</p>
-        </div>
-        <div>
-          <CheckboxGroup
-            label="Escolha suas opções:"
-            options={options}
-            selectedOptions={checkboxOptions}
-            onChange={setCheckboxOptions}
-          />
-        </div>
+        </AutoCompleteInputContainer>
+
+        <DatePicker
+          label="Data Inicio:"
+          value={selectedDate}
+          onChange={setSelectedDate}
+        />
+
+        <MultiSelectInput
+          label="Informações:"
+          options={options}
+          selectedOptions={selectedOptions}
+          onChange={setSelectedOptions}
+        />
+
+        <CheckboxGroup
+          label="Escolha suas opções:"
+          options={options}
+          selectedOptions={checkboxOptions}
+          onChange={setCheckboxOptions}
+        />
+
         <InputContainer>
           <Label>Limite de Registro</Label>
           <Input
@@ -80,7 +98,7 @@ export function Dashboard() {
           />
         </InputContainer>
         <Button type="submit">Enviar</Button>
-      </form>
+      </Form>
     </BaseLayout>
   );
 }

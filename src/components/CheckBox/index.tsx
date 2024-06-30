@@ -34,7 +34,6 @@ const CheckboxGroup: React.FC<ICheckboxGroupProps> = ({
           {option}
         </CheckboxLabel>
       ))}
-      <p>Selecionado(s): {selectedOptions.join(", ")}</p>
     </CheckboxContainer>
   );
 };
