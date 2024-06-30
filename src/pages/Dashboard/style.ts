@@ -54,3 +54,18 @@ export const P = styled.p`
   font-family: Arial, Helvetica, sans-serif;
   color: #6e717b;
 `;
+
+export const Table = styled.table`
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+`;
+
+export const TableRow = styled.tr`
+  border-bottom: 1px solid #ccc;
+`;
+
+export const TableCell = styled.td`
+  padding: 10px;
+  border: 1px solid #ccc;
+`;

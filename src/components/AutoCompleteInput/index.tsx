@@ -24,7 +24,7 @@ const AutoCompleteInput: React.FC<IAutoCompleteInputProps> = ({
   };
 
   const handleBlur = () => {
-    if (!options.includes(value)) {
+    if (value && !options.includes(value)) {
       setIsValid(false);
       setShowError(true);
       setTimeout(() => {
@@ -32,6 +32,7 @@ const AutoCompleteInput: React.FC<IAutoCompleteInputProps> = ({
       }, 5000); // Oculta a mensagem após 5 segundos
     } else {
       setIsValid(true);
+      setShowError(false); // Remover erro se campo estiver vazio
     }
   };
 
@@ -44,7 +45,6 @@ const AutoCompleteInput: React.FC<IAutoCompleteInputProps> = ({
         value={value}
         onChange={handleChange}
         onBlur={handleBlur}
-        required
         isValid={isValid}
       />
       <DataList id={listId}>
